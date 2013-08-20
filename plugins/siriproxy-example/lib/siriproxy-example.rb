@@ -36,6 +36,29 @@ class SiriProxy::Plugin::Example < SiriProxy::Plugin
 
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
+  listen_for /open(?: the)? first (bay|garage) door/i do
+   say "Lee, I'm opening the first garage door..."
+   request_completed
+   system("python /root/bin/garagedoor1.py")
+  end
+
+  listen_for /close(?: the)? first (bay|garage) door/i do
+   say "Lee, I'm closing the first garage door..."
+   request_completed
+   system("python /root/bin/garagedoor1.py")
+  end
+
+  listen_for /open(?: the)? (second|secondary) (bay|garage) door/i do
+   say "Lee, I'm opening the second garage door..."
+   request_completed
+   system("python /root/bin/garagedoor2.py")
+  end
+
+  listen_for /close(?: the)? (second|secondary) (bay|garage) door/i do
+   say "Lee, I'm closing the second garage door..."
+   request_completed
+   system("python /root/bin/garagedoor2.py")
+  end
 
   #Demonstrate that you can have Siri say one thing and write another"!
   listen_for /you don't say/i do
